@@ -1,21 +1,36 @@
+import { useState } from "react";
+
+//icon
 import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 
+//styles
 import styles from "./AddNote.module.css";
-const AddNote = () => {
+
+const AddNote = ({ handleAddNote }) => {
+    const [note, setNote] = useState("");
+
+    const handleSave = (e) => {
+        e.preventDefault();
+        const today = new Date();
+        handleAddNote({
+            text: note,
+            id: Date.now(),
+            date: today.toLocaleDateString(),
+        });
+        setNote("");
+    };
+
     return (
         <li className={styles.note}>
             <textarea
                 placeholder="Type to add a note..."
-                // value={noteText}
-                // onChange={handleChange}
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
+                maxLength="200"
             ></textarea>
             <div className={styles["note-footer"]}>
-                {/* <small>{characterLimit - noteText.length} Remaining</small> */}
-                <small>0/200</small>
-                <button
-                    className={`btn ${styles.save}`}
-                    // onClick={handleSaveClick}
-                >
+                <small>{note.length} / 200</small>
+                <button className={`btn ${styles.save}`} onClick={handleSave}>
                     <ArrowDownTrayIcon />
                 </button>
             </div>
