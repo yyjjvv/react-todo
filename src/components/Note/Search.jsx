@@ -1,29 +1,22 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-const Search = () => {
+const Search = ({ setSearch }) => {
     return (
-        <form
-            className="todo"
-            //  onSubmit={handleFormSubmit}
-        >
+        <div className="note">
             <div className="wrapper">
+                <MagnifyingGlassIcon width={24} height={24} />
                 <input
                     type="text"
                     id="note"
-                    className="input"
-                    // value={task}
-                    // onInput={(e) => setTask(e.target.value)}
-                    maxLength={60}
+                    className="input note-input"
+                    onChange={(e) => setSearch(e.target.value)}
                     placeholder="Type to search"
                 />
-                <label htmlFor="note" className="label">
+                <label htmlFor="note" className="label note-label">
                     Type to search
                 </label>
             </div>
-            <button className="btn" aria-label="Search note" type="submit">
-                <MagnifyingGlassIcon />
-            </button>
-        </form>
+        </div>
     );
 };
 

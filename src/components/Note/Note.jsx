@@ -1,3 +1,4 @@
+import { useState } from "react";
 // custom hooks
 import useLocalStorage from "../../hooks/useLocalStorage";
 // custom components
@@ -5,6 +6,7 @@ import Search from "./Search";
 import NotesList from "./NotesList";
 const Note = () => {
     const [notes, setNotes] = useLocalStorage("react-todo.notes", []);
+    const [search, setSearch] = useState("");
 
     const handleAddNote = (note) => {
         setNotes((prevState) => [...prevState, note]);
@@ -16,9 +18,11 @@ const Note = () => {
     return (
         <>
             <h1>Your notes</h1>
-            <Search />
+            <Search setSearch={setSearch} />
             <NotesList
-                notes={notes}
+                notes={notes.filter((note) => {
+                    return note.text.toLowerCase().includes(search);
+                })}
                 handleAddNote={handleAddNote}
                 handleDeleteNote={handleDeleteNote}
             />
