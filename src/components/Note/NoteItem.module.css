@@ -1,0 +1,40 @@
+.note {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    padding: 0.6em;
+    font-size: calc(var(--_size) * 0.8);
+    border-radius: calc(var(--_radius) * 4);
+    color: hsl(var(--accent));
+    background-color: hsl(var(--bg));
+    text-align: left;
+}
+
+.note > span {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.note-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.note-footer > button {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.note-footer > button svg {
+    stroke: hsl(var(--accent));
+}
+
+.note-footer small {
+    color: hsl(var(--accent) / 0.8) !important;
+}
+
+.save {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
